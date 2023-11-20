@@ -1,0 +1,371 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 20, 2023 at 12:06 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `ghorergarage`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `id` int(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `name` text NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone_number` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `problem` varchar(255) NOT NULL,
+  `approved_by` varchar(255) NOT NULL,
+  `status` varchar(100) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`id`, `username`, `name`, `email`, `phone_number`, `date`, `time`, `address`, `location`, `problem`, `approved_by`, `status`) VALUES
+(27, 'lima', 'lima', 'lima@gmail.com', 342432432, '2023-11-22', '16:28', 'mirpur', '', 'onek', 'niloy', 'denied');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(255) NOT NULL,
+  `user` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` int(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `quantity` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user`, `name`, `price`, `image`, `quantity`) VALUES
+(129, 'lima', 'AKEBONO REAR BRAKE PAD AN-635WK ', 2300, 'AKEBONO REAR BRAKE PAD AN-635WK FOR--2300tk.png', 1),
+(130, 'lima', 'DENCKERMANN OIL FILTER A210379 FOR TOYOTA', 550, 'DENCKERMANN OIL FILTER A210379 FOR TOYOTA--550tk.png', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id` int(255) NOT NULL,
+  `user` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `number` varchar(12) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `method` varchar(100) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `pin_code` int(10) NOT NULL,
+  `total_products` varchar(255) NOT NULL,
+  `total_price` varchar(255) NOT NULL,
+  `flat` varchar(255) NOT NULL,
+  `status` varchar(100) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id`, `user`, `name`, `number`, `email`, `method`, `city`, `pin_code`, `total_products`, `total_price`, `flat`, `status`) VALUES
+(29, 'lima', 'tania', '0198728287', 'lima@gmail.com', 'cash on delivery', 'dhaka', 1234, 'AKEBONO REAR BRAKE PAD AN-635WK  (1) , DENCKERMANN OIL FILTER A210379 FOR TOYOTA (1) ', '2850', '12', 'approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `image`) VALUES
+(30, 'AKEBONO REAR BRAKE PAD AN-635WK ', '2300', 'AKEBONO REAR BRAKE PAD AN-635WK FOR--2300tk.png'),
+(31, 'BREMBO P83141N FRONT BRAKE PAD', '3600', 'BREMBO P83141N FRONT BRAKE PAD-3600tk.png'),
+(32, 'DAIHATSU REAR BRAKE SHOE B1290 FOR TOYOTA', '3700', 'DAIHATSU REAR BRAKE SHOE B1290 FOR TOYOTA--3700tk.png'),
+(33, 'EBC GREENSTUFF 2000 SERIES SPORT BRAKE PAD D817P', '13500', 'EBC GREENSTUFF 2000 SERIES SPORT BRAKE PAD D817P--13500tk.png'),
+(34, 'HONDA OEM CALIPER REPAIR SEAK KIT FOR VEZEL (HYBRID)', '3200', 'HONDA OEM CALIPER REPAIR SEAK KIT FOR VEZEL (HYBRID)--3200tk.png'),
+(35, 'HONDA OEM REAR BRAKE PAD FOR ACCORD (1998)', '9600', 'HONDA OEM REAR BRAKE PAD FOR ACCORD (1998)-9600tk.png'),
+(36, 'HYUNDAI OEM FRONT BRAKE PAD FOR SONATA', '6000', 'HYUNDAI OEM FRONT BRAKE PAD FOR SONATA-6000tk.png'),
+(37, 'MAZDA OEM FRONT BRAKE PAD FOR AXELA (2005)', '9500', 'MAZDA OEM FRONT BRAKE PAD FOR AXELA (2005)-9500tk.png'),
+(38, 'MAZDA OEM FRONT BRAKE PADS FOR AXELA', '10500', 'MAZDA OEM FRONT BRAKE PADS FOR AXELA-10500tk.png'),
+(39, 'MITSUBISHI OEM FRONT BRAKE PAD 4605A261', '4700', 'MITSUBISHI OEM FRONT BRAKE PAD 4605A261--4700tk.png'),
+(40, 'MITSUBISHI OEM FRONT BRAKE PAD FOR EVO 10', '32500', 'MITSUBISHI OEM FRONT BRAKE PAD FOR EVO 10--32500tk.png'),
+(41, 'MITSUBISHI OEM REAR BRAKE PAD FOR EVO 10', '28000', 'MITSUBISHI OEM REAR BRAKE PAD FOR EVO 10--28000tk.png'),
+(42, 'NISSAN OEM FRONT BREAK PAD EE30J', '5500', 'NISSAN OEM FRONT BRAKE PAD EE30J--5500tk.png'),
+(43, 'NISSAN OEM REAR BREAK SHOE ED0X6', '5300', 'NISSAN OEM REAR BRAKE SHOE ED0X6--5300tk.png'),
+(44, 'POWERSTOP 17-1391 FRONT BRAKE PAD FOR TOYOTA PRIUS ALPHA', '3500', 'POWERSTOP 17-1391 FRONT BRAKE PAD FOR TOYOTA PRIUS ALPHA-3500tk.png'),
+(45, 'POWERSTOP 17-1394 FRONT BRAKE PAD FOR HONDA GRACE', '3700', 'POWERSTOP 17-1394 FRONT BRAKE PAD FOR HONDA GRACE-3700tk.png'),
+(46, 'POWERSTOP B913 REAR BRAKE SHOE FOR HONDA GRACE', '3700', 'POWERSTOP B913 REAR BRAKE SHOE FOR HONDA GRACE-3700tk.png'),
+(47, 'POWERSTOP B917 REAR BRAKE SHOE FOR TOYOTA PREMIO', '3500', 'POWERSTOP B917 REAR BRAKE SHOE FOR TOYOTA PREMIO-3500tk.png'),
+(48, 'TOYOTA OEM BRAKE MASTER CYLINDER FOR PREMIO 2011', '15500', 'TOYOTA OEM BRAKE MASTER CYLINDER FOR PREMIO 2011--15500tk.png'),
+(49, 'TOYOTA OEM FRONT BRAKE PAD 04465-52180 FOR CARINA GT', '5500', 'TOYOTA OEM FRONT BRAKE PAD 04465-52180 FOR CARINA GT--5500tk.png'),
+(50, 'TOYOTA OEM FRONT BRAKE PAD 52310', '6700', 'TOYOTA OEM FRONT BRAKE PAD 52310-6700tk.png'),
+(51, 'TOYOTA OEM FRONT BRAKE PAD 52320', '6200', 'TOYOTA OEM FRONT BRAKE PAD 52320-6200tk.png'),
+(52, 'TOYOTA OEM FRONT BRAKE PAD FOR ARISTO (2002)', '12000', 'TOYOTA OEM FRONT BRAKE PAD FOR ARISTO (2002)-12000tk.png'),
+(53, 'TOYOTA OEM PARKING BRAKE SHOE 60070 FOR HILUX', '5500', 'TOYOTA OEM PARKING BRAKE SHOE 60070 FOR HILUX-5500tk.png'),
+(54, 'TOYOTA OEM REAR BRAKE SHOE 52040', '3600', 'TOYOTA OEM REAR BRAKE SHOE 52040-3600tk.png'),
+(55, 'TOYOTA OEM REAR BRAKE SHOE 52121', '3200', 'TOYOTA OEM REAR BRAKE SHOE 52121-3200tk.png'),
+(56, 'TOYOTA OEM REAR BRAKE SHOE 52170', '3800', 'TOYOTA OEM REAR BRAKE SHOE 52170--3800tk.png'),
+(57, 'AISIN GREENTECH PLUS 0W-20 FULL SYNTHETIC 4L', '2700', 'AISIN GREENTECH PLUS 0W-20 FULL SYNTHETIC 4L-2700tk.png'),
+(58, 'BIZOL ALLROUND 0W-20 HC SYNTHETIC 4L', '3850', 'BIZOL ALLROUND 0W-20 HC SYNTHETIC 4L-3850tk.png'),
+(59, 'CALTEX HAVOLINE FORMULA 10W-30 MINERAL 4L', '5000', 'CALTEX HAVOLINE FORMULA 10W-30 MINERAL 4L.png'),
+(60, 'CALTEX HAVOLINE PRO DS ECO 5 0W-20 FULL SYNTHETIC 4L', '3450', 'CALTEX HAVOLINE PRO DS ECO 5 0W-20 FULL SYNTHETIC 4L-3450tk.png'),
+(61, 'CALTEX HAVOLINE PRO DS ECO 5 5W-30 FULL SYNTHETIC 4L', '3850', 'CALTEX HAVOLINE PRO DS ECO 5 5W-30 FULL SYNTHETIC 4L-3850tk.png'),
+(62, 'CALTEX HAVOLINE PRO DS LE 5W-40 FULL SYNTHETIC 4L', '4600', 'CALTEX HAVOLINE PRO DS LE 5W-40 FULL SYNTHETIC 4L-4600tk.png'),
+(63, 'CASTROL MAGNATEC 10W-40 SYNTHETIC 4L (THAILAND)', '2950', 'CASTROL MAGNATEC 10W-40 SYNTHETIC 4L (THAILAND)-2950tk.png'),
+(64, 'CASTROL MAGNATEC 10W-40 SYNTHETIC BASE 4L', '2800', 'CASTROL MAGNATEC 10W-40 SYNTHETIC BASE 4L-2800tk.png'),
+(65, 'DENSO PLATINUM 5W-40 SYNTHETIC 4L', '3500', 'DENSO PLATINUM 5W-40 SYNTHETIC 4L-3500tk.png'),
+(66, 'HYUNDAI XTEER GASOLINE ULTRA PROTECTION 5W-40 FULL SYNTHETIC 4L', '2900', 'HYUNDAI XTEER GASOLINE ULTRA PROTECTION 5W-40 FULL SYNTHETIC 4L-2900tk.png'),
+(67, 'JDA 10W-40 SYNTHETIC 4L', '2300', 'JDA 10W-40 SYNTHETIC 4L-2300tk.jpg'),
+(68, 'LIQUI MOLY TOURING HIGH TECH SPECIAL 20W-50 MINERAL 4L', '2350', 'LIQUI MOLY TOURING HIGH TECH SPECIAL 20W-50 MINERAL 4L-2350tk.png'),
+(69, 'LUBREX VELOCITY NANO PLUS 0W-30 FULL SYNTHETIC 4L', '2800', 'LUBREX VELOCITY NANO PLUS 0W-30 FULL SYNTHETIC 4L-2800tk.png'),
+(70, 'MAZDA ULTRA PLUS 0W-20 FULL SYNTHETIC 4.2L', '5200', 'MAZDA ULTRA PLUS 0W-20 FULL SYNTHETIC 4.2L-5200tk.png'),
+(71, 'MOBIL1 0W-20 FULL SYNTHETIC 4L', '5500', 'MOBIL1 0W-20 FULL SYNTHETIC 4L-5500tk.png'),
+(72, 'MOBIL1 5W-30 FULL SYNTHETIC 4L', '5500', 'MOBIL1 5W-30 FULL SYNTHETIC 4L-5500tk.png'),
+(73, 'MOTUL 300V HIGH RPM 0W-20 ESTER FULL SYNTHETIC 2L', '4500', 'MOTUL 300V HIGH RPM 0W-20 ESTER FULL SYNTHETIC 2L-4500tk.png'),
+(74, 'MOTUL H-TECH 100 PLUS 0W-20 FULL SYNTHETIC 4L', '3350', 'MOTUL H-TECH 100 PLUS 0W-20 FULL SYNTHETIC 4L-3350tk.png'),
+(75, 'NISSAN OEM STRONG SAVE X 0W-20 SYNTHETIC 4L', '3900', 'NISSAN OEM STRONG SAVE X 0W-20 SYNTHETIC 4L-3900tk.png'),
+(76, 'OSCAR JADE GOLD 0W-20 FULL SYNTHETIC 4L', '2350', 'OSCAR JADE GOLD 0W-20 FULL SYNTHETIC 4L-2350tk.png'),
+(77, 'PAKELO KRYPTON XT LA 5W-30 FULL SYNTHETIC 4L', '3950', 'PAKELO KRYPTON XT LA 5W-30 FULL SYNTHETIC 4L-3950tk.jpg'),
+(78, 'SHELL HELIX HX7 10W-30 SEMI SYNTHETIC 4L', '2700', 'SHELL HELIX HX7 10W-30 SEMI SYNTHETIC 4L-2700tk.png'),
+(79, 'SUNOCO SYNTURO ULTRA 0W-20 FULL SYNTHETIC 5L', '3400', 'SUNOCO SYNTURO ULTRA 0W-20 FULL SYNTHETIC 5L-3400tk.png'),
+(80, 'TOYOTA OEM 5W-30 MINERAL 4L', '3100', 'TOYOTA OEM 5W-30 MINERAL 4L-3100tk.png'),
+(96, 'AUDI OEM AIR FILTER FOR Q7', '10000', 'AUDI OEM AIR FILTER FOR Q7--10000tk.png'),
+(97, 'DENCKERMANN AIR FILTER A141787 FOR NISSAN', '2100', 'DENCKERMANN AIR FILTER A141787 FOR NISSAN--2100tk.png'),
+(98, 'DENSO COOL GEAR AIR FILTER 0100 FOR TOYOTA', '650', 'DENSO COOL GEAR AIR FILTER 0100 FOR TOYOTA--650tk.png'),
+(99, 'DENSO COOL GEAR AIR FILTER 1200 FOR TOYOTA', '900', 'DENSO COOL GEAR AIR FILTER 1200 FOR TOYOTA--900tk.png'),
+(100, 'DENSO COOL GEAR AIR FILTER-1320 FOR TOYOTA HYBRID', '700', 'DENSO COOL GEAR AIR FILTER-1320 FOR TOYOTA HYBRID--700tk.png'),
+(101, 'FLEETGUARD AIR FILTER AF260762868463', '6500', 'FLEETGUARD AIR FILTER AF260762868463--6500tk.png'),
+(102, 'HONDA OEM AIR FILTER 17220-5AA-A00 (JAPAN)', '900', 'HONDA OEM AIR FILTER 17220-5AA-A00 (JAPAN)--900tk.png'),
+(103, 'HONDA OEM AIR FILTER 17220-5R0', '900', 'HONDA OEM AIR FILTER 17220-5R0--900tk.png'),
+(104, 'MAZDA OEM AIR FILTER-Z40', '2500', 'MAZDA OEM AIR FILTER-Z40--2500tk.png'),
+(105, 'MAZDA OEM CABIN FILTER  JEX', '1600', 'MAZDA OEM CABIN FILTER J6X--1600tk.png'),
+(106, 'MITSUBISHI OEM AIR FILTER MR404847 FOR PAJERO', '3400', 'MITSUBISHI OEM AIR FILTER MR404847 FOR PAJERO--3400tk.png'),
+(107, 'MITSUBISHI OEM CABIN FILTER FOR LANCER', '2800', 'MITSUBISHI OEM CABIN FILTER FOR LANCER--2800tk.png'),
+(108, 'NISSAN OEM AIR FILTER 16546-4BA1B', '2000', 'NISSAN OEM AIR FILTER 16546-4BA1B--2000tk.png'),
+(109, 'NISSAN OEM AIR FILTER FOR V0193', '2500', 'NISSAN OEM AIR FILTER FOR V0193--2500tk.png'),
+(110, 'SAKURA AIR FILTER A-1165 FOR TOYOTA', '600', 'SAKURA AIR FILTER A-1165 FOR TOYOTA--600tk.png'),
+(111, 'SAKURA AIR FILTER A-5828 FOR MITSUBISHI', '800', 'SAKURA AIR FILTER A-5828 FOR MITSUBISHI--800tk.png'),
+(112, 'SAKURA AIR FILTER A-33430 FOR TOYOTA', '1200', 'SAKURA AIR FILTER A-33430 FOR TOYOTA--1200tk.png'),
+(113, 'SAKURA AIR FILTER A-33880 FOR TOYOTA', '850', 'SAKURA AIR FILTER A-33880 FOR TOYOTA--850tk.png'),
+(114, 'TOYOTA OEM AIR FILTER 23030', '18000', 'TOYOTA OEM AIR FILTER 23030--18000tk.png'),
+(115, 'TOYOTA OEM AIR FILTER 31131', '3500', 'TOYOTA OEM AIR FILTER 31131--3500tk.png'),
+(116, 'TOYOTA OEM AIR FILTER 46060', '2000', 'TOYOTA OEM AIR FILTER 46060--2000tk.png'),
+(117, 'TOYOTA OEM HYBRID BATTERY FILTER (CROSS)', '2700', 'TOYOTA OEM HYBRID BATTERY FILTER (CROSS)--2700tk.png'),
+(118, 'TOYOTA OEM HYBRID BATTERY FILTER', '1000', 'TOYOTA OEM HYBRID BATTERY FILTER--1000tk.png'),
+(119, 'VIC AIR FILTER A-1031 TOYOTA', '600', 'VIC AIR FILTER A-1031 TOYOTA--600tk.png'),
+(120, 'DENCKERMANN OIL FILTER A210372 FOR TOYOTA', '600', 'DENCKERMANN OIL FILTER A210372 FOR TOYOTA--600tk.png'),
+(121, 'DENCKERMANN OIL FILTER A210379 FOR TOYOTA', '550', 'DENCKERMANN OIL FILTER A210379 FOR TOYOTA--550tk.png'),
+(122, 'DENSO COOL GEAR OIL FILTER - 0580', '650', 'DENSO COOL GEAR OIL FILTER - 0580--650tk.png'),
+(123, 'DENSO OIL FILTER DXE-1004 FOR TOYOTA', '500', 'DENSO OIL FILTER DXE-1004 FOR TOYOTA--500tk.png'),
+(124, 'FLEETGUARD FUEL WATER SEPARATOR FILTER FS1212', '900', 'FLEETGUARD FUEL WATER SEPARATOR FILTER FS1212--900tk.png'),
+(125, 'FLEETGUARD OIL FILTER LF-670', '900', 'FLEETGUARD OIL FILTER LF-670--900tk.png'),
+(126, 'FLEETGUARD OIL FILTER LF-4056', '750', 'FLEETGUARD OIL FILTER LF-4056--750taka.png'),
+(127, 'HENGST OIL FILTER FOR MERCEDES BENZ', '3800', 'HENGST OIL FILTER FOR MERCEDES BENZ--3800tk.png'),
+(128, 'HONDA OEM OIL FILTER RAF-T01', '500', 'HONDA OEM OIL FILTER RAF-T01--500taka.png'),
+(129, 'JDA OIL FILTER T1636 FOR TOYOTA', '650', 'JDA OIL FILTER T1636 FOR TOYOTA--650tk.png'),
+(130, 'K&N PS-1003 SILVER SERIES OIL FILTER FOR TOYOTA', '1300', 'K&N PS-1003 SILVER SERIES OIL FILTER FOR TOYOTA--1300tk.png'),
+(131, 'K&N PS-7014 SILVER SERIES OIL FILTER', '2500', 'K&N PS-7014 SILVER SERIES OIL FILTER--2500tk.png'),
+(132, 'MAZDA OEM OIL FILTER 302A', '1200', 'MAZDA OEM OIL FILTER 302A--1200taka.png'),
+(133, 'MITHSUBISHI OEM OIL FILTER FOR LANCER', '1000', 'MITSUBISHI OEM OIL FILTER MD352626-1000tk.png'),
+(134, 'NISSAN OEM OIL FILTER 31UOB', '1000', 'NISSAN OEM OIL FILTER 31UOB--1000tk.png'),
+(135, 'NISSAN OEM OIL FILTER 43GOA', '1350', 'NISSAN OEM OIL FILTER 43GOA--1350tk.png'),
+(136, 'SAKURA OIL FILTER C-1112', '750', 'SAKURA OIL FILTER C-1112--750tk.png'),
+(137, 'TOYOTA OEM 90915-20003 OIL FILTER', '1000', 'TOYOTA OEM 90915-20003 OIL FILTER--1000taka.png'),
+(138, 'TOYOTA OEM OIL FILTER 40060', '450', 'TOYOTA OEM OIL FILTER 40060--450tk.png'),
+(139, 'TOYOTA OEM YZZN2 OIL FILTER', '600', 'TOYOTA OEM YZZN2 OIL FILTER--600taka.png'),
+(140, 'VIC OIL FILTER C-110 FOR TOYOTA', '900', 'VIC OIL FILTER C-110 FOR TOYOTA--900tk.png'),
+(141, 'VIC OIL FILTER O-119 FOR TOYOTA', '500', 'VIC OIL FILTER O-119 FOR TOYOTA--500tk.png'),
+(142, 'VW GROUP OEM OIL FILTER 04E115561', '4500', 'VW GROUP OEM OIL FILTER 04E115561--4500tk.png'),
+(143, 'WEICHAI OIL FILTER 61000070005', '550', 'WEICHAI OIL FILTER 61000070005--550tk.png'),
+(144, 'KYB Allion Front Set Shock Absorber', '17000', '9700TK.png'),
+(145, 'Denso Compact Horn (Disc)', '960', 'Denso Compact Horn (Disc)---960TK.png'),
+(146, 'Denso Electric Horn (Snail)', '1100', 'Denso Electric Horn (Snail)--1100TK.png'),
+(147, 'Denso Spark Plug IK20L (Honda Civic Type R- FN2)', '3100', 'Denso Spark Plug IK20L (Honda Civic Type R- FN2)  3100TK.png'),
+(148, 'Denso Spark Plug KH20TT (Toyota Land Cruiser V8- URJ202W', '8200', 'Denso Spark Plug KH20TT (Toyota Land Cruiser V8- URJ202W  8200TK.png'),
+(149, 'Denso Spark Plug VFXEH20 (Nissan Xtrail- T31, NT31, T32,NT32)', '5200', 'Denso Spark Plug VFXEH20 (Nissan Xtrail- T31, NT31, T32,NT32) 5200TK.png'),
+(150, 'Denso Spark Plug VXEHC24G (Honda CR-V- RW1,RW2, Civic', '4500', 'Denso Spark Plug VXEHC24G (Honda CR-V- RW1,RW2, Civic- FC1 4500TK.png'),
+(151, 'HAMKO Silva Car Battery N50ZL', '11000', 'HAMKO Silva Car Battery N50ZL--11000TK.png'),
+(152, 'HAMKO Silva Car Battery NS60L', '11500', 'HAMKO Silva Car Battery NS60L--11500TK.png'),
+(153, 'HAMKO Silva Car Battery NS70', '9700', 'HAMKO Silva Car Battery NS70--9700TK.png'),
+(154, 'HAMKO Silva Car Battery NX120-7', '14600', 'HAMKO Silva Car Battery NX120-7--14600TK.png'),
+(155, 'HAMKO Silva Car Battery NX120-7L', '14000', 'HAMKO Silva Car Battery NX120-7L--14000TK.png'),
+(156, 'Honda Civic (EM2-ES2) Rear Shock Absorber ', '27000', 'Honda Civic (EM2-ES2) Rear Shock Absorber 27000TK.png'),
+(157, 'Honda CRV 2002 Front Shock Absorber', '18180', 'Honda CRV 2002 Front Shock Absorber 18180TK.png'),
+(158, 'IAA HID 4100K Bulb HL411 D2R-D2S (Toyota Corolla- NZE121,NZE124, Fielder- NZE121G, NZE124G, Mark 2- JZX100,JZX110, Corolla- AE100, AE110, Ist- NCP61, NCP65, Honda Civic Type R- FN2, Nissan X-Trail- T31, NT31)', '5000', 'IAA HID 4100K Bulb HL411 D2R-D2S (Toyota Corolla- NZE121,NZE124, Fielder- NZE121G, NZE124G, Mark 2- JZX100,JZX110, Corolla- AE100, AE110, Ist- NCP61, NCP65, Honda Civic Type R- FN2, Nissan X-Trail- T31, NT31)(5000tk).png'),
+(159, 'KOITO Halogen Bulb 0473 HB3 12V 60W (Toyota, Nissan, Honda, Mitsubishi', '200', 'KOITO Halogen Bulb 0473 HB3 12V 60W (Toyota, Nissan, Honda, Mitsubishi--200TK.png'),
+(160, 'KOITO Halogen Bulb 1870A WY21W 12V 21W (Toyota, Nissan, Honda, Mitsubishi)', '60', 'KOITO Halogen Bulb 1870A WY21W 12V 21W (Toyota, Nissan, Honda, Mitsubishi)--60TK.png'),
+(161, 'KOITO Halogen Bulb 1881 W21W 12V 21W (Toyota, Nissan, Honda, Mitsubishi)', '50', 'KOITO Halogen Bulb 1881 W21W 12V 21W (Toyota, Nissan, Honda, Mitsubishi)--50TAKA.png'),
+(162, 'KOITO Halogen Bulb 1891 W21-5W 12V 21-5W (Toyota, Nissan, Honda, Mitsubishi)', '50', 'KOITO Halogen Bulb 1891 W21-5W 12V 21-5W (Toyota, Nissan, Honda, Mitsubishi)--50TK.png'),
+(163, 'KOITO HID Bulb 3507K D4R 42V35W (Toyota, Nissan, Honda, Mitsubishi)', '4000', 'KOITO HID Bulb 3507K D4R 42V35W (Toyota, Nissan, Honda, Mitsubishi)(4000tk).png'),
+(164, 'KOITO HID Bulb 3510K D4S 42V 35W (Toyota, Nissan, Honda, Mitsubishi)', '3800', 'KOITO HID Bulb 3510K D4S 42V 35W (Toyota, Nissan, Honda, Mitsubishi)(3800tk).png'),
+(165, 'KRANK PREMIUM', '11000', 'KRANK PREMIUM--11000TK.png'),
+(166, 'KYB Fielder Front Set Shock Absorber', '17000', 'KYB Fielder Front Set Shock Absorber 17000TK.png'),
+(167, 'KYB X corolla 2003 Front Set Shock Absorber', '14500', 'KYB X corolla 2003 Front Set Shock Absorber 14500TK.png'),
+(168, 'LUCAS Classic battery NS60L', '11200', 'LUCAS Classic battery NS60L--11200TK.png'),
+(169, 'LUCAS Classic battery NS70L', '11500', 'LUCAS Classic battery NS70L--11500TK.png'),
+(170, 'LUCAS Classic battery NS90L', '12500', 'LUCAS Classic battery NS90L--12500TK.png'),
+(171, 'LUCAS Classic battery NS100L', '13000', 'LUCAS Classic battery NS100L--13000TK.png'),
+(172, 'LUCAS Classic battery NX120-7L', '9900', 'LUCAS Classic battery NX120-7L--9900TK.png'),
+(173, 'NGK IR DILFR6 11G ', '4500', 'NGK IR DILFR6 11G 4500TK.png'),
+(174, 'PIAA HID 6000K Bulb HL603 D2R-D2S (Toyota Corolla NZE121-NZE124, Fielder NZE121G-NZE124G,Nissan Xt-rail T31-NT31,Mitsubishi Pajero V83W-V93W, MARK II JZX100-ZX110,Civic Type R FN2 +More)', '7000', 'PIAA HID 6000K Bulb HL603 D2R-D2S (Toyota Corolla NZE121-NZE124, Fielder NZE121G-NZE124G,Nissan Xt-rail T31-NT31,Mitsubishi Pajero V83W-V93W, MARK II JZX100-ZX110,Civic Type R FN2 +More)(7000TK).png'),
+(175, 'PIAA HID 6000K Bulb HL604 D4R-D4S (Toyota Premio- NZT240,NZT260, Allion- NZT240,NZT260, Axio- NZE141, NZE144,NZE161, Axio HV- NKE165, Fielder- NZE141G,144G,NZE161G,164G +More)', '7000', 'PIAA HID 6000K Bulb HL604 D4R-D4S (Toyota Premio- NZT240,NZT260, Allion- NZT240,NZT260, Axio- NZE141, NZE144,NZE161, Axio HV- NKE165, Fielder- NZE141G,144G,NZE161G,164G +More)(7000TK).png'),
+(176, ' PIAA LED BULB LER121', '3600', 'PIAA LED BULB LER121--3600TK.png'),
+(177, 'PIAA LED BULB LER122', '3500', 'PIAA LED BULB LER122--3500TK.png'),
+(178, 'PIAA LED BULB LEW103', '4000', 'PIAA LED BULB LEW103--4000TK.png'),
+(179, 'PIAA LED BULB LEW104', '4000', 'PIAA LED BULB LEW104--4000TK.png'),
+(180, 'Toyota Genuine Front Set Shock Absorber for Vitz', '36000', 'Toyota Genuine Front Set Shock Absorber for Vitz 36000TK.png'),
+(181, 'Toyota Genuine Rear Set Shock Absorber for Vitz', '14400', 'Toyota Genuine Rear Set Shock Absorber for Vitz 14400TK.png'),
+(182, 'Toyota Genuine Spark plug FK16HR11 ', '8000', 'Toyota Genuine Spark plug FK16HR11 8000TK.png'),
+(183, 'Toyota Genuine Spark plug For Allion- Premio (NZT240)', '7200', 'Toyota Genuine Spark plug For Allion- Premio (NZT240) 7200TK.png'),
+(184, 'Toyota Genuine Spark plug For Spacio 2001', '7200', 'Toyota Genuine Spark plug For Spacio 2001 7200TK.png'),
+(185, 'Volvo SMF NX120-7', '13500', 'Volvo SMF NX120-7--13500TK.png'),
+(186, 'Volvo SMF NX120-7L', '13000', 'Volvo SMF NX120-7L--13000TK.png'),
+(187, 'YOKOHAMA 175-65R15', '11500', 'YOKOHAMA 175-65R15(11500).png'),
+(188, 'Yokohama 185-65R15 ES32 BluEarth (Japan)', '12000', 'Yokohama 185-65R15 ES32 BluEarth (Japan.png'),
+(189, 'YUASA Maintenance Free Battery N40ZL', '11500', 'YUASA Maintenance Free Battery N40ZL--11500TK.png'),
+(190, 'YUASA Maintenance Free Battery N50ZL', '11000', 'YUASA Maintenance Free Battery N50ZL--11000TK.png'),
+(191, 'YUASA Maintenance Free Battery N60ZL', '12000', 'YUASA Maintenance Free Battery N60ZL--12000TK.png'),
+(192, 'YUASA Maintenance Free Battery N80ZL', '13000', 'YUASA Maintenance Free Battery N80ZL--13000TK.png'),
+(193, 'YUASA Maintenance Free Battery N90ZL', '135000', 'YUASA Maintenance Free Battery N90ZL--135000TK.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `mobile` varchar(15) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('admin','user','mechanic') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `mobile`, `email`, `address`, `username`, `password`, `role`) VALUES
+(1, 'Admin', 'Admin', '1234567890', 'admin@ghorergarage.com', '123 Admin adress', 'admin', 'admin', 'admin'),
+(9, 'Naima', 'Khan', '123456789', 'naima@gmail.com', 'ECB', 'naima', '$2y$10$XKu2eVNvuO.L.9GchEAtI.q8AWVJUjRId/9r9NagS1QB.Csmamxj.', 'user'),
+(20, 'tania', 'lima', '012546789374', 'lima@gmail.com', 'mirpur', 'lima', '$2y$10$U8Ei2SK0SKPqTBhlDv1.tus7i.VMgke5VbYQD.FJLStVAlJndOUCO', 'user'),
+(22, 'niloy', 'mia', '0125678397481', 'niloy@gmail.com', 'mirpur', 'niloy', '$2y$10$mMEDRX7JzJV1wus7wdfGl.WNPFx3rMCXkFWzRKlqnDvdAYmVnL3..', 'mechanic');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `appointment`
+--
+ALTER TABLE `appointment`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
